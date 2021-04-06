@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Compras</string>
+
+    //Titles
+    <string name="title_new_expense">Adicionar nova despesa</string>
+    <string name="title_select_market_item">Selecione um item</string>
+    <string name="title_calendar">Selecionar data</string>
+
+    //Texts
+    <string name="text_total_value">Valor total:</string>
+
+    //Hints
+    <string name="hint_value">Valor</string>
+    <string name="hint_date">Data</string>
+
+    //Buttons
+    <string name="button_save">Salvar</string>
+    <string name="button_include_item">Incluir item</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_ok">Ok</string>
+
+    //Error messages
+    <string name="error_empty_field">Por favor, preencha o campo acima.</string>
+    <string name="error_value_not_positive">Valor precisa ser positivo.</string>
+    
+</resources>
