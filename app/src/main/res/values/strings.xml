@@ -22,5 +22,6 @@
     //Error messages
     <string name="error_empty_field">Por favor, preencha o campo acima.</string>
     <string name="error_value_not_positive">Valor precisa ser positivo.</string>
+    <string name="error_future_date">Não pode ser data futura</string>
     
 </resources>

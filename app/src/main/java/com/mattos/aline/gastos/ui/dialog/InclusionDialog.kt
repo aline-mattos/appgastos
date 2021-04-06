@@ -1,6 +1,6 @@
 package com.mattos.aline.gastos.ui.dialog
 
-import android.app.DatePickerDialog
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -11,16 +11,20 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.mattos.aline.gastos.R
+import com.mattos.aline.gastos.app.App
 import com.mattos.aline.gastos.enums.Category
-import  com.mattos.aline.gastos.extensions.*
+import com.mattos.aline.gastos.extensions.strings
+import com.mattos.aline.gastos.extensions.then
+import com.mattos.aline.gastos.extensions.watcher
 import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_inclusao.*
-import kotlinx.android.synthetic.main.dialog_inclusao.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class InclusionDialog(context: Context) : BaseDialog(context) {
     //Variables
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    var selectedDate: Date? = null
 
     //Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,20 +69,14 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
             }
         )
 
-        val hoje = Calendar.getInstance()
-        val year = 2021
-        val month = 3
-        val day = 6
-        layout_field_date.field_date.setText(hoje.formatToBRDate())
-
-        layout_field_date.field_date.setOnClickListener {
-            DatePickerDialog(context,
-                DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                    val selectedDate = Calendar.getInstance()
-                    selectedDate.set(year, month, day)
-                    layout_field_date.field_date.setText(selectedDate.formatToBRDate())
+        field_date.setOnClickListener {
+            DatePickerDialog(
+                context,
+                action = { date ->
+                    selectedDate = date
+                    field_date.setText(App.instance.dateFormatter.format(date))
                 }
-                , year, month, day).show()
+            ).show()
         }
     }
 
@@ -133,6 +131,8 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                 position: Int,
                 id: Long
             ) {
+                clear()
+
                 if (position != 0) {
                     validate(category = Category.values().get(position - 1))
                 } else {
@@ -144,6 +144,14 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
     }
 
     //Other methods
+
+    private fun clear() {
+        selectedDate = null
+
+        field_value.setText("")
+        field_date.setText("")
+    }
+
     private fun validate(category: Category?) {
         when (category) {
             Category.AGUA, Category.ALUGUEL, Category.LUZ -> {
@@ -210,9 +218,10 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                         error = true
                     }
 
-                    // validar se input é uma data válida
-                    // validar se data é futura (não pode ser futura)
-
+                    if(!error && selectedDate!! > Date()) {
+                        message = context.strings[R.string.error_future_date]
+                        error = true
+                    }
 
                     tv_date_error.text = message
                     tv_date_error.visibility = message.isNotEmpty() then View.VISIBLE ?: View.GONE
