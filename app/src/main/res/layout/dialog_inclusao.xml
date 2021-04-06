@@ -197,7 +197,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_dialog_background"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <!--CABEÇALHO DO DIALOG-->
         <FrameLayout
@@ -226,12 +226,13 @@
         <!--RECYCLER VIEW ITENS MERCADO-->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_market_items"
+            android:id="@+id/recycler_market_include_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:listitem="@layout/recycler_market_include_item"/>
 
     </LinearLayout>
 </LinearLayout>

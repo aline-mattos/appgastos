@@ -1,6 +1,5 @@
 package com.mattos.aline.gastos.ui.dialog
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -18,7 +17,6 @@ import com.mattos.aline.gastos.extensions.then
 import com.mattos.aline.gastos.extensions.watcher
 import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_inclusao.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class InclusionDialog(context: Context) : BaseDialog(context) {

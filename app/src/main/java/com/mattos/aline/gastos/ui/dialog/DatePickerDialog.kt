@@ -2,12 +2,9 @@ package com.mattos.aline.gastos.ui.dialog
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import com.mattos.aline.gastos.R
-import com.mattos.aline.gastos.extensions.strings
 import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_date_picker.*
-
 import java.util.*
 
 class DatePickerDialog(context: Context, val action: (Date) -> Unit) : BaseDialog(context) {
