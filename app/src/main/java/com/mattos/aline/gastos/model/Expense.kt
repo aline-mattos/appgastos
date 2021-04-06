@@ -1,7 +1,7 @@
-package com.mattos.aline.compras.model
+package com.mattos.aline.gastos.model
 
 import com.google.gson.annotations.SerializedName
-import com.mattos.aline.compras.enums.Category
+import com.mattos.aline.gastos.enums.Category
 import java.util.*
 
 data class Expense(

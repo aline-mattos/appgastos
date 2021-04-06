@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.extensions
+package com.mattos.aline.gastos.extensions
 
 import android.content.Context
 import android.content.res.Resources

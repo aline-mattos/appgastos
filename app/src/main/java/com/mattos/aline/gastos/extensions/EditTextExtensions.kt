@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.extensions
+package com.mattos.aline.gastos.extensions
 
 import android.text.Editable
 import android.text.TextWatcher

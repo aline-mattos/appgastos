@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.enums
+package com.mattos.aline.gastos.enums
 
 
 enum class Category(val type: String) {

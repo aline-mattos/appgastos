@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Compras</string>
+    <string name="app_name">Gastos</string>
 
     //Titles
     <string name="title_new_expense">Adicionar nova despesa</string>

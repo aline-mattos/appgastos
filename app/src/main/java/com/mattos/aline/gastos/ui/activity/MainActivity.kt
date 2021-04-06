@@ -1,9 +1,9 @@
-package com.mattos.aline.compras.ui.activity
+package com.mattos.aline.gastos.ui.activity
 
 import android.app.Activity
 import android.os.Bundle
-import com.mattos.aline.compras.R
-import com.mattos.aline.compras.ui.dialog.InclusionDialog
+import com.mattos.aline.gastos.R
+import com.mattos.aline.gastos.ui.dialog.InclusionDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity(){

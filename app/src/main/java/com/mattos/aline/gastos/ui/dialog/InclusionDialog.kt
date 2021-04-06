@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.ui.dialog
+package com.mattos.aline.gastos.ui.dialog
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -10,10 +10,10 @@ import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.mattos.aline.compras.R
-import com.mattos.aline.compras.enums.Category
-import  com.mattos.aline.compras.extensions.*
-import com.mattos.aline.compras.utils.layout.BaseDialog
+import com.mattos.aline.gastos.R
+import com.mattos.aline.gastos.enums.Category
+import  com.mattos.aline.gastos.extensions.*
+import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_inclusao.*
 import kotlinx.android.synthetic.main.dialog_inclusao.view.*
 import java.util.*

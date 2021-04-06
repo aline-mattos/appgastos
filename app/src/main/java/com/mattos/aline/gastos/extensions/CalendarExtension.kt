@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.extensions
+package com.mattos.aline.gastos.extensions
 
 import java.text.SimpleDateFormat
 import java.util.*

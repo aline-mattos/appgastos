@@ -1,4 +1,4 @@
-package com.mattos.aline.compras.app
+package com.mattos.aline.gastos.app
 
 import android.app.Application
 import android.content.Context

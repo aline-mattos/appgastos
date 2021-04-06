@@ -1,7 +1,6 @@
-package com.mattos.aline.compras.model
+package com.mattos.aline.gastos.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class MarketItem(
     @SerializedName("id") var id: Long? = null,

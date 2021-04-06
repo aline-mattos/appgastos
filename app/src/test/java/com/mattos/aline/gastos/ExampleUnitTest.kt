@@ -1,4 +1,4 @@
-package com.mattos.aline.compras
+package com.mattos.aline.gastos
 
 import org.junit.Test
 
