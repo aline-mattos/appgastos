@@ -9,12 +9,16 @@ import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mattos.aline.gastos.R
 import com.mattos.aline.gastos.app.App
 import com.mattos.aline.gastos.enums.Category
 import com.mattos.aline.gastos.extensions.strings
 import com.mattos.aline.gastos.extensions.then
 import com.mattos.aline.gastos.extensions.watcher
+import com.mattos.aline.gastos.model.MarketItem
+import com.mattos.aline.gastos.ui.adapter.MarketItemAdapter
+import com.mattos.aline.gastos.ui.adapter.viewholder.MarketItemViewHolder
 import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_inclusao.*
 import java.util.*
@@ -22,7 +26,9 @@ import java.util.*
 class InclusionDialog(context: Context) : BaseDialog(context) {
     //Variables
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    lateinit var adapterMarketItem: MarketItemAdapter
     var selectedDate: Date? = null
+
 
     //Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,8 +85,24 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
     }
 
     private fun setupRecyclers() {
+        adapterMarketItem = MarketItemAdapter { item ->
+            //TODO: incluir dado no segundo adapter
+        }
 
+        recycler_market_include_items.adapter = adapterMarketItem
+        recycler_market_include_items.layoutManager = LinearLayoutManager(context)
 
+        adapterMarketItem.add(
+            list = listOf(
+                MarketItem(name = "Banana", value = 10.0),
+                MarketItem(name = "Maçã", value = 5.333),
+                MarketItem(name = "Arroz", value = 20.12),
+                MarketItem(name = "Massa", value = 15.50),
+                MarketItem(name = "Café", value = 3.05),
+                MarketItem(name = "Ovo", value = 999.09)
+            ),
+            clear = false
+        )
     }
 
     private fun setupButtons() {

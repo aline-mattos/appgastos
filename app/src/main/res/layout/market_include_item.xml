@@ -4,39 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/market_include_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_gravity="center|top"
-        android:background="@drawable/shape_recycler_include_item">
-
-        <TextView
-            android:id="@+id/tv_item_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            tools:text="Valor € "/>
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:gravity="start|center">
 
         <TextView
             android:id="@+id/tv_item_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="Banana importada"/>
+
+        <TextView
+            android:id="@+id/tv_item_value"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            tools:text= "Banana Importada"/>
-
+            android:textSize="14sp"
+            android:textColor="@color/light_blue_A400"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            tools:text="1.0 €"/>
 
     </LinearLayout>
 
-
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/light_blue_A400"/>
 
 </LinearLayout>

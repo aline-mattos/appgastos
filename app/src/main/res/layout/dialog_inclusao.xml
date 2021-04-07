@@ -139,7 +139,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:maxHeight="150dp"
-            android:visibility="gone"/>
+            android:visibility="visible"
+            tools:listitem="@layout/market__list_item_saved"/>
 
         <LinearLayout
             android:id="@+id/layout_total_value"
