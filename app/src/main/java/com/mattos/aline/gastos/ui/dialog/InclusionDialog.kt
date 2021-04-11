@@ -18,7 +18,7 @@ import com.mattos.aline.gastos.extensions.then
 import com.mattos.aline.gastos.extensions.watcher
 import com.mattos.aline.gastos.model.MarketItem
 import com.mattos.aline.gastos.ui.adapter.MarketItemAdapter
-import com.mattos.aline.gastos.ui.adapter.viewholder.MarketItemViewHolder
+import com.mattos.aline.gastos.ui.adapter.MarketItemSavedAdapter
 import com.mattos.aline.gastos.utils.layout.BaseDialog
 import kotlinx.android.synthetic.main.dialog_inclusao.*
 import java.util.*
@@ -27,8 +27,8 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
     //Variables
     lateinit var spinnerAdapter: ArrayAdapter<String>
     lateinit var adapterMarketItem: MarketItemAdapter
+    lateinit var adapterItemSaved: MarketItemSavedAdapter
     var selectedDate: Date? = null
-
 
     //Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,21 +52,21 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
     private fun setupFields() {
         //mesmo código (addTextChangedListener vs DanielExtensions_Watcher), mas o segundo é menor)
 
-        field_value.addTextChangedListener(object : TextWatcher{
+        field_value.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {}
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-               if(tv_value_error.visibility == View.VISIBLE) {
-                   tv_value_error.visibility = View.GONE
-                   tv_value_error.text = ""
-               }
+                if (tv_value_error.visibility == View.VISIBLE) {
+                    tv_value_error.visibility = View.GONE
+                    tv_value_error.text = ""
+                }
             }
         })
 
         field_date.watcher(
             onChange = {
-                if(tv_date_error.visibility == View.VISIBLE) {
+                if (tv_date_error.visibility == View.VISIBLE) {
                     tv_date_error.visibility = View.GONE
                     tv_date_error.text = ""
                 }
@@ -85,12 +85,20 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
     }
 
     private fun setupRecyclers() {
+        adapterItemSaved = MarketItemSavedAdapter {
+            updateTotalValue()
+        }
+
         adapterMarketItem = MarketItemAdapter { item ->
-            //TODO: incluir dado no segundo adapter
+            adapterItemSaved.add(item, clear = false)
+
         }
 
         recycler_market_include_items.adapter = adapterMarketItem
         recycler_market_include_items.layoutManager = LinearLayoutManager(context)
+
+        recycler_saved_items.adapter = adapterItemSaved
+        recycler_saved_items.layoutManager = LinearLayoutManager(context)
 
         adapterMarketItem.add(
             list = listOf(
@@ -123,7 +131,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
         }
 
         button_save.setOnClickListener {
-            if(validate(views = listOf(field_value, field_date))){
+            if (validate(views = listOf(field_value, field_date))) {
                 val a = String.format("%.2f", field_value.text.toString().toFloat())
                 Toast.makeText(context, a, Toast.LENGTH_SHORT).show()
             } else {
@@ -202,7 +210,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
         layout_market_items.visibility = View.GONE
     }
 
-    private fun validate(views: List<View> ): Boolean {
+    private fun validate(views: List<View>): Boolean {
         var validated = true
 
         views.forEach { view ->
@@ -218,7 +226,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                         error = true
                     }
 
-                    if(!error && (data.toDouble() <= 0)) {
+                    if (!error && (data.toDouble() <= 0)) {
                         message = context.strings[R.string.error_value_not_positive]
                         error = true
                     }
@@ -226,7 +234,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                     tv_value_error.text = message
                     tv_value_error.visibility = message.isNotEmpty() then View.VISIBLE ?: View.GONE
 
-                    if(validated && error) {
+                    if (validated && error) {
                         validated = false
                     }
                 }
@@ -238,7 +246,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                         error = true
                     }
 
-                    if(!error && selectedDate!! > Date()) {
+                    if (!error && selectedDate!! > Date()) {
                         message = context.strings[R.string.error_future_date]
                         error = true
                     }
@@ -246,7 +254,7 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
                     tv_date_error.text = message
                     tv_date_error.visibility = message.isNotEmpty() then View.VISIBLE ?: View.GONE
 
-                    if(validated && error) {
+                    if (validated && error) {
                         validated = false
                     }
                 }
@@ -254,6 +262,18 @@ class InclusionDialog(context: Context) : BaseDialog(context) {
         }
 
         return validated
+    }
+
+    private fun updateTotalValue() {
+        var totalValue: Double = 0.0
+
+        adapterItemSaved.items.forEach { item: MarketItem ->
+            totalValue += (item.quantity * item.value!!)
+        }
+
+        tv_valor_total.text = String.format("%.2f", totalValue)
+
+
     }
 
 }

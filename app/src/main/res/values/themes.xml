@@ -18,9 +18,7 @@
         <item name="colorPrimary">@color/light_blue_A400</item>
         <item name="colorPrimaryDark">@color/light_blue_900</item>
         <item name="colorAccent">@color/light_blue_400</item>
-
-        <item name="android:textColorSecondary">@color/light_blue_50</item>
-
+        <item name="android:textColorSecondary">@color/light_blue_A400</item>
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 </resources>
